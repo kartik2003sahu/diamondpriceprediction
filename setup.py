@@ -1,22 +1,29 @@
 from setuptools import find_packages,setup
 from typing import List
 
+HYPEN_E_DOT='-e .'
+
 def get_requirements(file_path:str)->List[str]:
     requirements=[]
+    ## file ko open krega
     with open(file_path) as file_obj:
-        requirements = file_obj.readlines()
-        requirements = [req.replace("\n" , "") for  req in requirements]
+        #sb lines read hogi
+        requirements=file_obj.readlines()
+        #/n ko remove karenge
+        requirements=[req.replace("\n","") for req in requirements]
+
+        if HYPEN_E_DOT in requirements:
+            requirements.remove(HYPEN_E_DOT)
 
         return requirements
 
 
 setup(
-
-    name='DiamondPricePridiction',
+    name='DiamondPricePrediction',
     version='0.0.1',
-    author='kartikey sahu',
-    author_email='kartikeysahu.cse25@jecrc.ac.in',
+    author='govind',
+    author_email='govindgautam9079077974@gmail.com',
     install_requires=get_requirements('requirements.txt'),
-    package = find_packages()
+    packages=find_packages()
 
 )
